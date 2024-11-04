@@ -1,0 +1,52 @@
+
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+
+      <ion-button>
+        <img src="../../assets/icon/70c6a3b2-eab6-49bf-bb62-5941d24c60f7.jfif" alt="logo" class="logo" style="margin-left: 35px;" />
+      </ion-button>
+    </ion-buttons>
+    <ion-button fill="clear" class="nav-button" (click)="jugadores()" >Jugadores</ion-button>
+    <ion-button fill="clear" class="nav-button" >Representantes</ion-button>
+    <ion-button fill="clear" class="nav-button" >Clubes</ion-button>
+    <ion-button fill="clear" class="nav-button" >DT</ion-button>
+
+    <ion-buttons slot="end">
+      <ng-container *ngIf="playerProfile">
+        <ion-button color="white" style="background-color: #ff6600;" class="button-primary">  Bienvenido {{ playerProfile.playerName }}</ion-button>
+      </ng-container>
+
+
+
+    </ion-buttons>
+
+
+
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content *ngIf="playerProfile">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ playerProfile.playerName }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="image-container">
+        <img [src]="playerProfile.profilePhotoUrl" alt="Foto de perfil">
+      </div>
+      <p>Posición: {{ playerProfile.position }}</p>
+      <p>Edad: {{ playerProfile.age }}</p>
+      <p>Altura: {{ playerProfile.height }} cm</p>
+      <p>Club Actual: {{ playerProfile.currentClub }}</p>
+      <p>Último Club: {{ playerProfile.lastClub }}</p>
+      <p>Experiencia: {{ playerProfile.yearsOfExperience }} años</p>
+      <p>Video: <a [href]="playerProfile.videoLink" target="_blank">Ver video</a></p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

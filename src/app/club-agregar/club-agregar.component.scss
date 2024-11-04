@@ -1,0 +1,49 @@
+/* Estilos para el ion-header */
+ion-header {
+  background-color: #3880ff; /* Cambia el color del header */
+}
+
+/* Estilos para el ion-toolbar */
+ion-toolbar {
+  --background: #3880ff; /* Color de fondo del toolbar */
+  color: white; /* Color del texto en el toolbar */
+}
+
+/* Estilos para el ion-content */
+ion-content {
+  --background: #f8f8f8; /* Color de fondo del contenido */
+}
+
+/* Estilos para centrar el formulario */
+.form-container {
+  max-width: 600px; /* Ancho máximo del formulario */
+  margin: auto; /* Centramos el formulario */
+  padding: 20px; /* Espaciado interno */
+  background: white; /* Fondo blanco */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Estilos para el ion-item */
+ion-item {
+  margin-bottom: 15px; /* Espaciado entre items */
+}
+
+/* Estilo para el ion-button */
+ion-button {
+  background-color: #3880ff; /* Color del botón */
+  color: white; /* Color del texto del botón */
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+/* Efecto hover para el botón */
+ion-button:hover {
+  background-color: #3171e0; /* Color del botón en hover */
+}
+
+/* Estilo para el input de tipo file */
+input[type="file"] {
+  display: block; /* Asegura que el input ocupe el espacio completo */
+  width: 100%; /* Ancho completo */
+  margin-top: 10px; /* Espacio superior */
+}

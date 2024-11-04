@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Iniciar Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Formulario de inicio de sesión con email -->
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 20px;">
+    <!-- Input de correo -->
+    <ion-input
+      [(ngModel)]="email"
+      type="email"
+      placeholder="Correo"
+      style="width: 80%; max-width: 300px;"
+    ></ion-input>
+
+    <!-- Input de contraseña -->
+    <ion-input
+      [(ngModel)]="password"
+      type="password"
+      placeholder="Contraseña"
+      style="width: 80%; max-width: 300px;"
+    ></ion-input>
+
+    <!-- Botón de inicio de sesión con email -->
+    <ion-button
+      expand="full"
+      color="success"
+      (click)="loginWithEmail()"
+      style="width: 80%; max-width: 300px;"
+    >
+      Iniciar Sesión con Email
+    </ion-button>
+  </div>
+
+  <!-- Inicio de sesión con Google -->
+  <div style="display: flex; justify-content: center;">
+    <!-- Botón de inicio de sesión con Google -->
+    <ion-button
+      expand="full"
+      color="primary"
+      (click)="loginWithGoogle()"
+      style="width: 80%; max-width: 300px;"
+    >
+      Iniciar Sesión con Google
+    </ion-button>
+  </div>
+
+  <!-- Botón para ir al registro -->
+  <div style="display: flex; justify-content: center; margin-top: 20px;">
+    <ion-button
+      expand="full"
+      color="medium"
+      [routerLink]="['/register']"
+      style="width: 80%; max-width: 300px;"
+    >
+      Ir al Registro
+    </ion-button>
+  </div>
+</ion-content>

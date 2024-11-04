@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goHome()" >
+        <img src="../../assets/icon/70c6a3b2-eab6-49bf-bb62-5941d24c60f7.jfif" alt="logo" class="logo" style="margin-left: 35px;" />
+      </ion-button>
+    </ion-buttons>
+    <ion-button fill="clear" class="nav-button" (click)="navigateToPlayerProfile()">Jugadores</ion-button>
+    <ion-button fill="clear" class="nav-button" (click)="navigateManager()">Representantes</ion-button>
+    <ion-button fill="clear" class="nav-button" (click)="navigateToClubes()">Clubes</ion-button>
+    <ion-button fill="clear" class="nav-button" (click)="navigateToDt()">DT</ion-button>
+
+    <ion-buttons slot="end">
+      <ion-button  color="white" style="background-color: #ff6600;" class="button-primary">Registrar Usuario</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+
+
+   <div class="profile-selection" style="background-color: aliceblue;">
+    <h2 style="color: #ff6600;">Selecciona tu tipo de perfil</h2>
+
+    <ion-button (click)="navigateToPlayerProfile1()" color="white" style="background-color: #ff6600;">
+      Crear perfil de jugador
+    </ion-button>
+
+    <ion-button (click)="navigateToDt1()" color="white" style="background-color: #ff6600;">
+      Crear perfil de técnico
+    </ion-button>
+
+    <ion-button (click)="goToManagerAgregar()" color="white" style="background-color: #ff6600;">
+      Crear perfil de manager
+    </ion-button>
+
+    <ion-button (click)="navigateToClubes1()" color="white" style="background-color: #ff6600;">
+      Crear perfil de club
+    </ion-button>
+  </div>
+
+
+</ion-content>

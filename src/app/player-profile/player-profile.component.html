@@ -1,0 +1,132 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()" fill="clear">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Crear Perfil de Jugador</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="form-container">
+
+
+
+
+    <form (ngSubmit)="createPlayerProfile()" #playerForm="ngForm">
+
+
+
+      <!-- Tipo de Jugador -->
+      <ion-item>
+        <ion-label position="floating">Tipo de Jugador</ion-label>
+        <ion-select [(ngModel)]="player.playerType" name="playerType" required>
+          <ion-select-option value="jugador">Jugador</ion-select-option>
+          <ion-select-option value="arquero">Arquero</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Preferencia de Pie -->
+      <ion-item>
+        <ion-label position="floating">Preferencia de Pie</ion-label>
+        <ion-select [(ngModel)]="player.footPreference" name="footPreference" required>
+          <ion-select-option value="izquierdo">Izquierdo</ion-select-option>
+          <ion-select-option value="derecho">Derecho</ion-select-option>
+          <ion-select-option value="ambas">Ambas</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Posición -->
+      <ion-item>
+        <ion-label position="floating">Posición</ion-label>
+        <ion-select [(ngModel)]="player.position" name="position" required>
+          <ion-select-option value="central">Central</ion-select-option>
+          <ion-select-option value="lateral">Lateral</ion-select-option>
+          <ion-select-option value="delantero">Delantero</ion-select-option>
+          <ion-select-option value="enganche">Enganche</ion-select-option>
+          <ion-select-option value="medio">Medio</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- País -->
+      <ion-item>
+        <ion-label position="floating">País</ion-label>
+        <ion-input [(ngModel)]="player.country" name="country" required></ion-input>
+      </ion-item>
+
+      <!-- Provincia -->
+      <ion-item>
+        <ion-label position="floating">Provincia</ion-label>
+        <ion-input [(ngModel)]="player.province" name="province" required></ion-input>
+      </ion-item>
+
+      <!-- Nombre del Jugador -->
+      <ion-item>
+        <ion-label position="floating">Nombre del Jugador</ion-label>
+        <ion-input [(ngModel)]="player.playerName" name="playerName" required></ion-input>
+      </ion-item>
+
+      <!-- Último Club -->
+      <ion-item>
+        <ion-label position="floating">Último Club</ion-label>
+        <ion-input [(ngModel)]="player.lastClub" name="lastClub" required></ion-input>
+      </ion-item>
+
+      <!-- Club Actual -->
+      <ion-item>
+        <ion-label position="floating">Club Actual</ion-label>
+        <ion-input [(ngModel)]="player.currentClub" name="currentClub" required></ion-input>
+      </ion-item>
+
+      <!-- Edad -->
+      <ion-item>
+        <ion-label position="floating">Edad</ion-label>
+        <ion-input type="number" [(ngModel)]="player.age" name="age" required></ion-input>
+      </ion-item>
+
+      <!-- Altura -->
+      <ion-item>
+        <ion-label position="floating">Altura (cm)</ion-label>
+        <ion-input type="number" [(ngModel)]="player.height" name="height" required></ion-input>
+      </ion-item>
+
+      <!-- Años de Experiencia -->
+      <ion-item>
+        <ion-label position="floating">Años de Experiencia</ion-label>
+        <ion-input type="number" [(ngModel)]="player.yearsOfExperience" name="yearsOfExperience" required></ion-input>
+      </ion-item>
+
+      <!-- Enlace de Video -->
+      <ion-item>
+        <ion-label position="floating">Enlace de Video</ion-label>
+        <ion-input type="url" [(ngModel)]="player.videoLink" name="videoLink"></ion-input>
+      </ion-item>
+
+      <!-- Foto de Perfil -->
+      <ion-item>
+        <ion-label position="floating">Foto de Perfil</ion-label>
+        <input type="file" (change)="onFileSelected($event)" accept="image/*" required />
+      </ion-item>
+
+      <!-- Detalle Adicional -->
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-input [(ngModel)]="player.detalle" name="detalle" required></ion-input>
+      </ion-item>
+
+
+
+
+
+
+      <ion-button expand="full" type="submit" [disabled]="!playerForm.valid" class="ion-margin-top">
+        Crear Perfil
+      </ion-button>
+
+
+
+
+    </form>
+  </div>
