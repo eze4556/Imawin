@@ -152,32 +152,9 @@ export class FirestoreService {
 
 //FUTBOLISTA
 
-
-// Método para agregar un perfil de futbolista
-addPlayerProfile(uid: string, profileData: any): Promise<void> {
-  return this.firestore.collection('playerProfiles').doc(uid).set(profileData);
-}
-
-// Método para obtener el perfil de un futbolista por ID
-getPlayerProfile(uid: string): Observable<any> {
-  return this.firestore.collection('playerProfiles').doc(uid).valueChanges();
-}
-
 // Cambiar playerProfiles a players
 getPlayers(): Observable<any[]> {
-  return this.firestore.collection('players').valueChanges(); // Aquí asegúrate que sea 'players'
-}
-
-
-
-// Método para actualizar el perfil de un futbolista
-updatePlayerProfile(uid: string, profileData: any): Promise<void> {
-  return this.firestore.collection('playerProfiles').doc(uid).update(profileData);
-}
-
-// Método para eliminar el perfil de un futbolista
-deletePlayerProfile(uid: string): Promise<void> {
-  return this.firestore.collection('playerProfiles').doc(uid).delete();
+  return this.firestore.collection('player').valueChanges(); // Aquí asegúrate que sea 'players'
 }
 
 
@@ -257,8 +234,21 @@ deleteClub(uid: string): Promise<void> {
 
 
 
+getPlayerByUserId(uid: string): Observable<any> {
+  return this.firestore.collection('player', ref => ref.where('userId', '==', uid)).valueChanges();
+}
 
+getDtByUserId(uid: string): Observable<any> {
+  return this.firestore.collection('dt', ref => ref.where('userId', '==', uid)).valueChanges();
+}
 
+getManagerByUserId(uid: string): Observable<any> {
+  return this.firestore.collection('manager', ref => ref.where('userId', '==', uid)).valueChanges();
+}
+
+getClubByUserId(uid: string): Observable<any> {
+  return this.firestore.collection('club', ref => ref.where('userId', '==', uid)).valueChanges();
+}
 
 
 }

@@ -3,11 +3,13 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { Router } from '@angular/router';
 import { LoadingController, ToastController } from '@ionic/angular';
+import { User } from 'src/models/users.models';
+import { FirestoreService } from 'src/services/firestore.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
   email: string = '';  // Definir las propiedades para almacenar el email y la contraseña
@@ -18,59 +20,98 @@ export class LoginComponent {
     private afAuth: AngularFireAuth,
     private router: Router,
     private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private firestoreService: FirestoreService
   ) {}
 
-  // Iniciar sesión con email y contraseña
   async loginWithEmail() {
     if (!this.email || !this.password) {
-      this.showToast('Por favor ingresa el correo y la contraseña');
-      return;
+        this.showToast('Por favor ingresa el correo y la contraseña');
+        return;
     }
 
     const loading = await this.loadingCtrl.create({
-      message: 'Iniciando sesión...'
+        message: 'Iniciando sesión...'
     });
     await loading.present();
 
     this.afAuth.signInWithEmailAndPassword(this.email, this.password)
-      .then(async (userCredential) => {
-        const user = userCredential.user;
-        console.log('Sesión iniciada con email:', user);
+        .then(async (userCredential) => {
+            const user = userCredential.user;
+            console.log('Sesión iniciada con email:', user);
+
+            if (user?.uid) {
+                // Buscar el usuario en Firestore por su UID
+                this.firestoreService.getUserById(user.uid).subscribe(userDataFromFirestore => {
+                    if (userDataFromFirestore) {
+                        const userData = {
+                            uid: user.uid,
+                            email: user.email,
+                            tipo_usuario: userDataFromFirestore.tipo_usuario
+                        };
+                        localStorage.setItem('currentUser', JSON.stringify(userData));
+                        console.log('Usuario guardado en localStorage:', userData);
+                    } else {
+                        this.showToast('Usuario no encontrado en Firestore.');
+                    }
+                    loading.dismiss();
+                    this.showToast('Sesión iniciada exitosamente');
+                    this.router.navigate(['/home']);
+                });
+            } else {
+                await loading.dismiss();
+                this.showToast('No se pudo obtener el UID del usuario.');
+            }
+        })
+        .catch(async (error) => {
+            await loading.dismiss();
+            this.showToast('Error al iniciar sesión: ' + error.message);
+        });
+}
 
 
-
-        await loading.dismiss();
-        this.showToast('Sesión iniciada exitosamente');
-        this.router.navigate(['/home']);  // Redirigir a la página principal después del login
-      })
-      .catch(async (error) => {
-        await loading.dismiss();
-        this.showToast('Error al iniciar sesión: ' + error.message);
-      });
-  }
-
-  // Iniciar sesión con Google
-  async loginWithGoogle() {
-    const loading = await this.loadingCtrl.create({
+async loginWithGoogle() {
+  const loading = await this.loadingCtrl.create({
       message: 'Iniciando sesión con Google...'
-    });
-    await loading.present();
+  });
+  await loading.present();
 
-    this.afAuth.signInWithPopup(new GoogleAuthProvider())
+  this.afAuth.signInWithPopup(new GoogleAuthProvider())
       .then(async (userCredential) => {
-        const user = userCredential.user;
-        console.log('Sesión iniciada con Google:', user);
+          const user = userCredential.user;
+          console.log('Sesión iniciada con Google:', user);
 
-        await loading.dismiss();
-        this.showToast('Sesión iniciada con Google exitosamente');
-        this.router.navigate(['/home']);
+          if (user?.uid) {
+              // Buscar el usuario en Firestore por su UID
+              this.firestoreService.getUserById(user.uid).subscribe(userDataFromFirestore => {
+                  if (userDataFromFirestore) {
+                      const userData = {
+                          uid: user.uid,
+                          email: user.email,
+                          tipo_usuario: userDataFromFirestore.tipo_usuario
+                      };
+                      localStorage.setItem('currentUser', JSON.stringify(userData));
+                      console.log('Usuario guardado en localStorage:', userData);
+                  } else {
+                      this.showToast('Usuario no encontrado en Firestore.');
+                  }
+                  loading.dismiss();
+                  this.showToast('Sesión iniciada con Google exitosamente');
+                  this.router.navigate(['/home']);
+              });
+          } else {
+              await loading.dismiss();
+              this.showToast('No se pudo obtener el UID del usuario.');
+          }
       })
       .catch(async (error) => {
-        await loading.dismiss();
-        this.showToast('Error al iniciar sesión con Google: ' + error.message);
+          await loading.dismiss();
+          this.showToast('Error al iniciar sesión con Google: ' + error.message);
       });
-  }
+}
+
+
+
 
   // Mostrar mensajes de Toast
   async showToast(message: string) {
@@ -80,4 +121,26 @@ export class LoginComponent {
     });
     toast.present();
   }
+
+
+  clubes() {
+    this.router.navigate(['clubes']); // Navega a la ruta 'playerProfile'
+  }
+
+  jugadores() {
+    this.router.navigate(['Jugadores']); // Navega a la ruta 'playerProfile'
+  }
+
+ manager() {
+    this.router.navigate(['playerDetail']); // Navega a la ruta 'playerProfile'
+  }
+
+  dts() {
+    this.router.navigate(['dts']); // Navega a la ruta 'playerProfile'
+  }
+
+  navigateToRegister() {
+    this.router.navigate(['register']); // Navega a la ruta 'playerProfile'
+  }
+
 }

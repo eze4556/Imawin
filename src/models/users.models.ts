@@ -1,8 +1,5 @@
-// export interface User {
-//   id: string;
-//   nombre: string;
-//   correo: string;
-//   tipo_usuario?: 'futbolista' | 'director' | 'club' | 'manager'
-//   fecha_registro: Date;
-//   imagen?: string;
-// }
+export interface User {
+  id: string;
+  email: string;
+  tipo_usuario?: string;
+}

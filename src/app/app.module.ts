@@ -11,12 +11,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProfilePlayerComponent } from './profile-player/profile-player.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
-import { DetalleJugadorComponent } from './detalleJugador/detalleJugador.component';
-import { PerfilAgenteComponent } from './perfilAgente/perfilAgente.component';
 import { ClubesComponent } from './clubes/clubes.component';
-import { ProfileClubComponent } from './profileClub/profileClub.component';
 import { DtsComponent } from './dts/dts.component';
-import { PerfilDtComponent } from './perfilDt/perfilDt.component';
 
 
 import { AngularFireAuthModule } from '@angular/fire/compat/auth'; // Si usarás autenticación
@@ -26,38 +22,35 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore'; // Impo
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
-import { PlayerProfileComponent } from './player-profile/player-profile.component';
-import { DtAgregarComponent } from './dt-agregar/dt-agregar.component';
-import { ManagerAgregarComponent } from './manager-agregar/manager-agregar.component';
-import { ClubAgregarComponent } from './club-agregar/club-agregar.component';
-import { PerfilClubComponent } from './perfil-club/perfil-club.component';
 
-import { PerfilJugadorComponent } from './perfil-jugador/perfil-jugador.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { ProfileClubComponent } from './profileClub/profileClub.component';
 
 @NgModule({
-  declarations: [												AppComponent,
-      ProfilePlayerComponent,
-      PlayerDetailComponent,
-      DetalleJugadorComponent,
-      PerfilAgenteComponent,
-      ClubesComponent,
-      ProfileClubComponent,
-      DtsComponent,
-      PerfilDtComponent,
-      RegisterComponent,
-      RegisterComponent,
-      LoginComponent,
-      PlayerProfileComponent,
-      DtAgregarComponent,
-      ManagerAgregarComponent,
-      ClubAgregarComponent,
-      PerfilClubComponent,
-      PerfilJugadorComponent
-
-   ],
-  imports: [BrowserModule,    AngularFireStorageModule,
- IonicModule.forRoot(), AngularFirestoreModule, FormsModule, AppRoutingModule, AngularFireModule.initializeApp(environment.firebaseConfig), AngularFireAuthModule, ],
+  declarations: [
+    AppComponent,
+    ProfileClubComponent,
+    PerfilComponent,
+    ProfilePlayerComponent,
+    PlayerDetailComponent,
+    ClubesComponent,
+    DtsComponent,
+    RegisterComponent,
+    LoginComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AngularFireStorageModule,
+    IonicModule.forRoot(),
+    AngularFirestoreModule,
+    FormsModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA] // Asegúrate de incluirlo aquí
 })
 export class AppModule {}
+
