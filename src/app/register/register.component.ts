@@ -248,7 +248,7 @@ async selectUserType(type: string) {
 
     // Guardar el perfil en el localStorage como currentUser
     localStorage.setItem('currentUser', JSON.stringify(profileData));
-    this.showToast(`Perfil de ${userType} creado y guardado en localStorage.`);
+    // this.showToast(`Perfil de ${userType} creado y guardado en localStorage.`);
 }
 
 
@@ -282,7 +282,7 @@ async selectUserType(type: string) {
             .then(() => {
               loading.dismiss();
               this.showToast(`Perfil de ${userType} creado con éxito!`);
-              this.router.navigate([`/perfil${userType.charAt(0).toUpperCase() + userType.slice(1)}`, profileData.playerName || profileData.clubName]);
+              // this.router.navigate([`/perfil${userType.charAt(0).toUpperCase() + userType.slice(1)}`, profileData.playerName || profileData.clubName]);
             })
             .catch(async (error) => {
               await loading.dismiss();
