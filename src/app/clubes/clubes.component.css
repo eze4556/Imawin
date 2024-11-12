@@ -4,6 +4,14 @@ ion-toolbar {
 
 }
 
+
+
+:host(.button-solid) {
+    --background: var(--ion-color-primary, #c24810);
+    --color: var(--ion-color-primary-contrast, #fff);
+}
+
+
 .nav-button {
   --color: #ff6600; /* Naranja */
   font-weight: bold;
@@ -276,4 +284,6 @@ ion-content {
 .player-actions a i {
     margin-right: 5px;
 }
+
+
 
