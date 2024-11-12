@@ -34,7 +34,9 @@ export class HomePage  implements OnInit {
     });
   }
 
-
+  navigateTo(route: string) {
+    this.router.navigate([`/${route}`]);
+  }
 
 
    navigateToPlayerProfile() {
