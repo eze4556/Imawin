@@ -30,75 +30,87 @@
 
 <!-- Contenedor de filtros -->
 <div class="filters-container">
+  <!-- Filtros a la izquierda -->
+  <div class="left-filters">
+    <!-- Filtro por tipo de jugador -->
+    <ion-segment [(ngModel)]="tipoJugador" (ionChange)="aplicarFiltros()" color="light">
+      <ion-segment-button value="jugador">Jugador</ion-segment-button>
+      <ion-segment-button value="arquero">Arquero</ion-segment-button>
+    </ion-segment>
 
-    <!-- Filtros a la izquierda -->
-    <div class="left-filters">
+    <!-- Filtro por pierna hábil -->
+    <ion-segment [(ngModel)]="piernaHabil" (ionChange)="aplicarFiltros()" color="light" style="margin-top: 10px;">
+      <ion-segment-button value="izquierdo">Izquierdo</ion-segment-button>
+      <ion-segment-button value="derecho">Derecho</ion-segment-button>
+    </ion-segment>
 
-        <!-- Segmentos de posición y pie hábil -->
-        <ion-segment value="jugador" color="light">
-            <ion-segment-button value="jugador">Jugador</ion-segment-button>
-            <ion-segment-button value="arquero">Arquero</ion-segment-button>
-        </ion-segment>
+    <!-- Filtro por posición -->
+    <ion-segment [(ngModel)]="posicion" (ionChange)="aplicarFiltros()" color="light" style="margin-top: 10px;">
+      <ion-segment-button value="central">Central</ion-segment-button>
+      <ion-segment-button value="lateral">Lateral</ion-segment-button>
+      <ion-segment-button value="centro">Centro</ion-segment-button>
+      <ion-segment-button value="delantero">Delantero</ion-segment-button>
+      <ion-segment-button value="enganche">Enganche</ion-segment-button>
+      <ion-segment-button value="extremo">Extremo</ion-segment-button>
+    </ion-segment>
 
-        <ion-segment value="pierna-habil" color="light" style="margin-top: 10px;">
-            <ion-segment-button value="izquierdo">Izquierdo</ion-segment-button>
-            <ion-segment-button value="derecho">Derecho</ion-segment-button>
-        </ion-segment>
+    <!-- Filtros por rango -->
+    <div class="range-filters" style="margin-top: 20px;">
+      <ion-range [(ngModel)]="edad" (ionChange)="aplicarFiltros()" min="5" max="40" value="20" pin="true">
+        <ion-label slot="start" style="color: #ff6600;">Edad</ion-label>
+      </ion-range>
 
-        <ion-segment value="posicion" color="light" style="margin-top: 10px;">
-            <ion-segment-button value="central">Central</ion-segment-button>
-            <ion-segment-button value="lateral">Lateral</ion-segment-button>
-            <ion-segment-button value="centro">Centro</ion-segment-button>
-            <ion-segment-button value="delantero">Delantero</ion-segment-button>
-            <ion-segment-button value="enganche">Enganche</ion-segment-button>
-            <ion-segment-button value="extremo">Extremo</ion-segment-button>
-        </ion-segment>
+      <ion-range [(ngModel)]="altura" (ionChange)="aplicarFiltros()" min="70" max="200" value="170" pin="true" style="margin-top: 10px;">
+        <ion-label slot="start" style="color: #ff6600;">Altura</ion-label>
+      </ion-range>
 
-        <!-- Filtros de rango -->
-        <div class="range-filters" style="margin-top: 20px;">
-            <ion-range min="5" max="40" value="20" pin="true">
-                <ion-label slot="start" style="color: #ff6600;">Edad</ion-label>
-            </ion-range>
-
-            <ion-range min="70" max="200" value="170" pin="true" style="margin-top: 10px;">
-                <ion-label slot="start" style="color: #ff6600;">Altura</ion-label>
-            </ion-range>
-
-            <ion-range min="0" max="30" value="10" pin="true" style="margin-top: 10px;">
-                <ion-label slot="start" style="color: #ff6600;">Años experiencia</ion-label>
-            </ion-range>
-        </div>
+      <ion-range [(ngModel)]="experiencia" (ionChange)="aplicarFiltros()" min="0" max="30" value="10" pin="true" style="margin-top: 10px;">
+        <ion-label slot="start" style="color: #ff6600;">Años experiencia</ion-label>
+      </ion-range>
     </div>
+  </div>
 
-    <!-- Filtros a la derecha -->
-    <div class="right-filters">
-        <input type="text" placeholder="🔍 Buscador">
-        <input type="text" placeholder="País">
-        <input type="text" placeholder="Provincia">
-        <input type="text" placeholder="Ciudad">
-    </div>
-
+  <!-- Filtros a la derecha -->
+  <div class="right-filters">
+    <input type="text" [(ngModel)]="buscador" (input)="aplicarFiltros()" placeholder="🔍 Buscador">
+    <input type="text" [(ngModel)]="pais" (input)="aplicarFiltros()" placeholder="País">
+    <input type="text" [(ngModel)]="provincia" (input)="aplicarFiltros()" placeholder="Provincia">
+    <input type="text" [(ngModel)]="ciudad" (input)="aplicarFiltros()" placeholder="Ciudad">
+    <ion-button (click)="aplicarFiltros()">Filtrar</ion-button>
+  </div>
 </div>
 
 
-<!-- Contenedor de tarjetas de jugadores -->
+
+
 <div class="players-container">
-  <div class="player-card" *ngFor="let player of players">
+  <!-- Si no hay jugadores filtrados, muestra un mensaje de "No se encontraron jugadores" -->
+  <div *ngIf="jugadoresFiltrados.length === 0">
+    <p>No se encontraron jugadores con los filtros seleccionados.</p>
+  </div>
+
+  <!-- Muestra cada jugador filtrado en una tarjeta -->
+  <div class="player-card" *ngFor="let player of jugadoresFiltrados">
     <img [src]="player.profilePhotoUrl || 'https://via.placeholder.com/300x200'" alt="{{ player.playerName }}">
     <div class="player-info">
       <h3>{{ player.playerName }}</h3>
-      <p>{{ player.position }}</p>
-      <p>{{ player.country }} - {{ player.province }}</p>
-      <p>Exp: {{ player.yearsOfExperience }} años</p>
-      <p>F.Nac: {{ player.birthDate | date: 'dd/MM/yyyy' }}</p>
-      <p>Pie: {{ player.foot }} - Altura: {{ player.height }} cm</p>
+      <p><strong>Posición:</strong> {{ player.position }}</p>
+      <p><strong>País:</strong> {{ player.country }} - {{ player.province }}</p>
+      <p><strong>Experiencia:</strong> {{ player.yearsOfExperience }} años</p>
+      <p><strong>Fecha de Nacimiento:</strong> {{ player.birthDate | date: 'dd/MM/yyyy' }}</p>
+      <p><strong>Pierna Hábil:</strong> {{ player.foot }} - <strong>Altura:</strong> {{ player.height }} cm</p>
     </div>
     <div class="player-actions">
-
-      <a [href]="player.videoLink" target="_blank"><i class="fa fa-play"></i>Partido</a>
+  <!-- Enlace al video del jugador -->
+      <a [href]="player.videoLink" target="_blank"><i class="fa fa-play"></i> Partido</a>
     </div>
   </div>
 </div>
+
+
+
+
+
 
 
 
