@@ -85,53 +85,19 @@
 
   <br />
 
-  <!-- Contenedor de tarjetas de jugadores -->
+  <!-- Contenedor de tarjetas de clubes -->
   <div class="players-container">
-    <div class="player-card">
-      <img  (click)="navigateToAgente()"  src="https://via.placeholder.com/300x200" alt="Jugador 1"  />
+    <div class="player-card" *ngFor="let club of clubs">
+      <img [src]="club.profilePhotoUrl || 'https://via.placeholder.com/300x200'" alt="{{ club.nombre }}">
       <div class="player-info">
-        <h3>Banfield</h3>
-        <p>Activo</p>
-        <p>Argentina - Buenos aires</p>
-        <p>Fundacion: 1819</p>
-        <h4>Intereses</h4>
-        <p>Centrales Delanteros Argentinos Uruguayos Zurdos +18</p>
-      </div>
-    </div>
-
-    <div class="player-card">
-      <img  (click)="navigateToAgente()" src="https://via.placeholder.com/300x200" alt="Jugador 2" />
-      <div class="player-info">
-       <h3>Banfield</h3>
-        <p>Activo</p>
-        <p>Argentina - Buenos aires</p>
-        <p>Fundacion: 1819</p>
-        <h4>Intereses</h4>
-        <p>Centrales Delanteros Argentinos Uruguayos Zurdos +18</p>
-      </div>
-    </div>
-
-    <div class="player-card">
-      <img (click)="navigateToAgente()" src="https://via.placeholder.com/300x200" alt="Jugador 2" />
-      <div class="player-info">
-        <h3>Banfield</h3>
-        <p>Activo</p>
-        <p>Argentina - Buenos aires</p>
-        <p>Fundacion: 1819</p>
-        <h4>Intereses</h4>
-        <p>Centrales Delanteros Argentinos Uruguayos Zurdos +18</p>
-      </div>
-    </div>
-
-    <div class="player-card">
-      <img (click)="navigateToAgente()" src="https://via.placeholder.com/300x200" alt="Jugador 2" />
-      <div class="player-info">
-       <h3>Banfield</h3>
-        <p>Activo</p>
-        <p>Argentina - Buenos aires</p>
-        <p>Fundacion: 1819</p>
-        <h4>Intereses</h4>
-        <p>Centrales Delanteros Argentinos Uruguayos Zurdos +18</p>
+        <h3>{{ club.nombre }}</h3>
+        <p>{{ club.detalle }}</p>
+        <p>{{ club.country }} - {{ club.province }}</p>
+        <p>Fundación: {{ club.fundacion }}</p>
+        <h4>Redes Sociales</h4>
+        <p>Instagram: {{ club.instagram || 'No disponible' }}</p>
+        <p>Facebook: {{ club.facebook || 'No disponible' }}</p>
+        <p><a [href]="club.website" target="_blank">Sitio Web</a></p>
       </div>
     </div>
   </div>

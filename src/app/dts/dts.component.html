@@ -85,53 +85,24 @@
 
   <br />
 
-  <!-- Contenedor de tarjetas de jugadores -->
+  <!-- Contenedor de tarjetas de DTs -->
   <div class="players-container">
-    <div class="player-card">
-      <img  (click)="navigateToAgente()"  src="https://via.placeholder.com/300x200" alt="Jugador 1"  />
+    <div class="player-card" *ngFor="let dt of dts">
+      <img [src]="dt.profilePhotoUrl || 'https://via.placeholder.com/300x200'" alt="{{ dt.playerName }}">
       <div class="player-info">
-        <h3>Emilio Gómez</h3>
-        <p>Activo</p>
-        <p>Argentina - Sta. Fe</p>
-        <p>Exp: 3 años</p>
-        <h4>Intereses</h4>
-        <p>Centrales Delanteros Argentinos Uruguayos Zurdos +18</p>
-      </div>
-    </div>
-
-    <div class="player-card">
-      <img  (click)="navigateToAgente()" src="https://via.placeholder.com/300x200" alt="Jugador 2" />
-      <div class="player-info">
-        <h3>Emilio Gómez</h3>
-        <p>Activo</p>
-        <p>Argentina - Sta. Fe</p>
-        <p>Exp: 3 años</p>
-        <h4>Intereses</h4>
-        <p>Centrales Delanteros Argentinos Uruguayos Zurdos +18</p>
-      </div>
-    </div>
-
-    <div class="player-card">
-      <img (click)="navigateToAgente()" src="https://via.placeholder.com/300x200" alt="Jugador 2" />
-      <div class="player-info">
-        <h3>Emilio Gómez</h3>
-        <p>Activo</p>
-        <p>Argentina - Sta. Fe</p>
-        <p>Exp: 3 años</p>
-        <h4>Intereses</h4>
-        <p>Centrales Delanteros Argentinos Uruguayos Zurdos +18</p>
-      </div>
-    </div>
-
-    <div class="player-card">
-      <img (click)="navigateToAgente()" src="https://via.placeholder.com/300x200" alt="Jugador 2" />
-      <div class="player-info">
-       <h3>Emilio Gómez</h3>
-        <p>Activo</p>
-        <p>Argentina - Sta. Fe</p>
-        <p>Exp: 3 años</p>
-        <h4>Intereses</h4>
-        <p>Centrales Delanteros Argentinos Uruguayos Zurdos +18</p>
+        <h3>{{ dt.playerName }}</h3>
+        <p>{{ dt.dt }}</p>
+        <p>{{ dt.country }} - {{ dt.province }}</p>
+        <p>Exp: {{ dt.yearsOfExperience || 0 }} años</p>
+        <h4>Estilo de Juego</h4>
+        <p>{{ dt.gusto }}</p>
+        <h4>Último Club</h4>
+        <p>{{ dt.lastClub || 'No disponible' }}</p>
+        <h4>Club Actual</h4>
+        <p>{{ dt.currentClub || 'No disponible' }}</p>
+        <h4>Video</h4>
+        <p><a [href]="dt.videoLink" target="_blank">Ver Video</a></p>
+        <p>Detalles: {{ dt.detalle }}</p>
       </div>
     </div>
   </div>
