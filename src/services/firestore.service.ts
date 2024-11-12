@@ -3,6 +3,9 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
 import { GoogleAuthProvider } from 'firebase/auth';
+import { ClubProfile } from 'src/models/club.model';
+import { DtProfile } from 'src/models/dt.model';
+import { ManagerProfile } from 'src/models/manager.model';
 
 
 
@@ -167,6 +170,10 @@ addDt(uid: string, profileData: any): Promise<void> {
   return this.firestore.collection('dt').doc(uid).set(profileData);
 }
 
+getDts(): Observable<DtProfile[]> {
+  return this.firestore.collection<DtProfile>('dt').valueChanges();
+}
+
 // Método para obtener
 getDt(uid: string): Observable<any> {
   return this.firestore.collection('dt').doc(uid).valueChanges();
@@ -207,6 +214,9 @@ deleteManager(uid: string): Promise<void> {
   return this.firestore.collection('manager').doc(uid).delete();
 }
 
+getManagers(): Observable<ManagerProfile[]> {
+  return this.firestore.collection<ManagerProfile>('manager').valueChanges();
+}
 
 
 //Club
@@ -215,6 +225,10 @@ deleteManager(uid: string): Promise<void> {
 // Método para agregar
 addClub(uid: string, profileData: any): Promise<void> {
   return this.firestore.collection('club').doc(uid).set(profileData);
+}
+
+getClubs(): Observable<ClubProfile[]> {
+  return this.firestore.collection<ClubProfile>('club').valueChanges();
 }
 
 // Método para obtener

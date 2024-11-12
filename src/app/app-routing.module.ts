@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ProfilePlayerComponent } from './profile-player/profile-player.component';
-import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { ClubesComponent } from './clubes/clubes.component';
 import { DtsComponent } from './dts/dts.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { ManagersComponent } from './managers/managers.component';
 
 
 
@@ -15,15 +15,13 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
-
+  {
+    path: 'managers',
+    component: ManagersComponent
+  },
   {
   path: 'Jugadores',
   component: ProfilePlayerComponent
-},
-
-  {
-  path: 'playerDetail',
-  component: PlayerDetailComponent
 },
 {
   path: 'clubes',

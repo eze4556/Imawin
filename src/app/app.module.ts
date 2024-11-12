@@ -10,7 +10,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProfilePlayerComponent } from './profile-player/profile-player.component';
-import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { ClubesComponent } from './clubes/clubes.component';
 import { DtsComponent } from './dts/dts.component';
 
@@ -24,15 +23,14 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 
 import { PerfilComponent } from './perfil/perfil.component';
-import { ProfileClubComponent } from './profileClub/profileClub.component';
+import { ManagersComponent } from './managers/managers.component';
 
 @NgModule({
   declarations: [
+    ManagersComponent,
     AppComponent,
-    ProfileClubComponent,
     PerfilComponent,
     ProfilePlayerComponent,
-    PlayerDetailComponent,
     ClubesComponent,
     DtsComponent,
     RegisterComponent,
