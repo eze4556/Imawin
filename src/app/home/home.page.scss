@@ -1,6 +1,10 @@
 ion-toolbar {
   --background: white;
-  // --color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px; /* Ajusta el espacio a los lados */
+  height: 80px;
 }
 
 .nav-button {
@@ -11,6 +15,8 @@ ion-toolbar {
 
 .logo {
   width: 50px;
+  margin-left: 35px;
+  height: 40px;
 }
 
 .hero {
@@ -413,4 +419,26 @@ ion-button {
      flex-wrap: wrap; /* Asegurar que los botones no se desborden */
    }
 }
+
+.buttons-container {
+  background-color: white;
+  border: 2px solid #ff6600;
+  border-radius: 30px;
+  // padding: 5px;
+  display: flex;
+  align-items: center;
+  // gap: 5px;
+}
+
+.login-button {
+  background-color: white;
+  // border: 2px solid #ff6600;
+  color: #ff6600;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 20px;
+  height: 100%; /* Mantiene la altura completa en el contenedor */
+  box-sizing: border-box;
+}
+
 

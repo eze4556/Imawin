@@ -85,44 +85,35 @@ p {
   font-size: 14px;
 }
 
-
-
-
-
 ion-footer {
-    background-color: white;
-    padding: 20px;
-    text-align: center;
-    border-top: 1px solid #ddd;
-    position: fixed; /* Hace que el footer sea fijo */
-    bottom: 0;       /* Posiciona el footer en la parte inferior */
-    left: 0;
-    right: 0;
-    width: 100%;     /* Asegura que el footer ocupe todo el ancho */
-    z-index: 100;    /* Asegura que el footer esté sobre otros elementos */
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #ddd;
 }
 
 .footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .social-icons {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .social-icons a {
-    margin: 0 10px;
-    text-decoration: none;
+  margin: 0 10px;
+  text-decoration: none;
 }
 
 .privacy-links a {
-    text-decoration: none;
-    font-size: 14px;
-    color: #ff6600;
+  text-decoration: none;
+  font-size: 14px;
+  color: #ff6600;
 }
+
 
 /* Asegúrate de que el contenido principal no esté detrás del footer */
 ion-content {
