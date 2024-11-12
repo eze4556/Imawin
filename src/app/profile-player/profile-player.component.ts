@@ -13,29 +13,21 @@ export class ProfilePlayerComponent implements OnInit {
 
    players: any[] = [];
 
+    filteredPlayers: PlayerProfile[] = [];
 
-    // Variables para los filtros
-  tipoJugador: string = 'jugador';
-  piernaHabil: string = 'ambos';
-  posicion: string = 'todos';
-  edad: number = 20;
-  altura: number = 170;
-  experiencia: number = 10;
-  buscador: string = '';
-  pais: string = '';
-  provincia: string = '';
-  ciudad: string = '';
-
-    jugadoresFiltrados: any[] = []; // Lista de jugadores después del filtro
-
-
-
+  // Propiedades de los filtros
+  selectedType: string = '';
+  selectedFoot: string = '';
+  selectedPosition: string = '';
+  searchQuery: string = '';
+  country: string = '';
 
   constructor(private router: Router,private firestoreService: FirestoreService) { }
 
   ngOnInit() {
 
         this.getAllPlayers();
+
 
   }
 
@@ -48,36 +40,28 @@ getAllPlayers() {
     this.firestoreService.getPlayers().subscribe((data: PlayerProfile[]) => {
       console.log("Datos de jugadores obtenidos:", data);
       this.players = data;
-      this.aplicarFiltros();  // Aplica los filtros después de cargar los jugadores
+
+              this.filteredPlayers = data; // Inicia con todos los jugadores
+
+
     }, error => {
       console.error("Error al obtener los jugadores:", error);
     });
   }
 
-aplicarFiltros() {
-  this.jugadoresFiltrados = this.players.filter(jugador => {
-    return (
-      (this.tipoJugador === 'todos' || jugador.playerType === this.tipoJugador) &&
-      (this.piernaHabil === 'ambas' || jugador.footPreference === this.piernaHabil) &&
-      (this.posicion === 'todos' || jugador.position === this.posicion) &&
-      (!this.edad || jugador.age >= this.edad) &&
-      (!this.altura || jugador.height >= this.altura) &&
-      (!this.experiencia || jugador.yearsOfExperience >= this.experiencia) &&
-      (!this.pais || jugador.country.toLowerCase().includes(this.pais.toLowerCase())) &&
-      (!this.provincia || jugador.province.toLowerCase().includes(this.provincia.toLowerCase())) &&
-      (!this.buscador || jugador.playerName.toLowerCase().includes(this.buscador.toLowerCase()))
-    );
-  });
-  console.log("Jugadores filtrados:", this.jugadoresFiltrados);
+
+ aplicarFiltros() {
+    this.filteredPlayers = this.players.filter(player => {
+      return (
+        (!this.selectedType || player.playerType === this.selectedType) &&
+        (!this.selectedFoot || player.footPreference === this.selectedFoot) &&
+        (!this.selectedPosition || player.position === this.selectedPosition) &&
+        (!this.country || player.country.toLowerCase().includes(this.country.toLowerCase())) &&
+        (!this.searchQuery || player.playerName.toLowerCase().includes(this.searchQuery.toLowerCase()))
+      );
+    });
+  }
 }
-
-
-
-}
-
-
-
-
 
 
 
