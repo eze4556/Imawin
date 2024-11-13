@@ -71,7 +71,9 @@ aplicarFiltros() {
   console.log("Jugadores filtrados:", this.jugadoresFiltrados);
 }
 
-
+navigateTo(route: string) {
+  this.router.navigate([`/${route}`]);
+}
 
 }
 

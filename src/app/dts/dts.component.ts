@@ -18,6 +18,10 @@ export class DtsComponent implements OnInit {
     this.getAllDts();
   }
 
+  navigateTo(route: string) {
+    this.router.navigate([`/${route}`]);
+  }
+
    navigateToAgente() {
     this.router.navigate(['profileDt']); // Navega a la ruta 'playerProfile'
   }

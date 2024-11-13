@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ManagerProfile } from 'src/models/manager.model';
 import { FirestoreService } from 'src/services/firestore.service';
 
@@ -9,7 +10,9 @@ import { FirestoreService } from 'src/services/firestore.service';
 })
 export class ManagersComponent  implements OnInit {
   managers: ManagerProfile[] = [];
-  constructor(private firestoreService: FirestoreService) { }
+  constructor(private firestoreService: FirestoreService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.getAllManagers();
@@ -26,5 +29,9 @@ export class ManagersComponent  implements OnInit {
     }, error => {
       console.error("Error al obtener los managers:", error);
     });
+  }
+
+  navigateTo(route: string) {
+    this.router.navigate([`/${route}`]);
   }
 }

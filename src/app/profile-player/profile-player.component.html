@@ -1,15 +1,15 @@
 <ion-header >
   <ion-toolbar >
     <ion-buttons slot="start">
-      <ion-button>
+      <ion-button (click)="navigateTo('home')">
         <img src="../../assets/icon/70c6a3b2-eab6-49bf-bb62-5941d24c60f7.jfif" alt="logo" class="logo"  style="margin-left: 35px; " />
       </ion-button>
     </ion-buttons>
 
-<!-- <ion-button fill="clear" class="nav-button">Jugadores</ion-button> -->
-      <ion-button fill="clear" class="nav-button">Representantes</ion-button>
-      <ion-button fill="clear" class="nav-button">Clubes</ion-button>
-      <ion-button fill="clear" class="nav-button">DT</ion-button>
+    <!-- <ion-button fill="clear" class="nav-button" (click)="navigateTo('Jugadores')">Jugadores</ion-button> -->
+    <ion-button fill="clear" class="nav-button" (click)="navigateTo('managers')">Representantes</ion-button>
+    <ion-button fill="clear" class="nav-button" (click)="navigateTo('clubes')">Clubes</ion-button>
+    <ion-button fill="clear" class="nav-button" (click)="navigateTo('dts')">DT</ion-button>
 
 
     <!-- <ion-title>Imawin</ion-title> -->
