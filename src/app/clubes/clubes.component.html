@@ -44,50 +44,27 @@
     <h1 class="gradient-text">Perfiles de Clubes</h1>
   </div>
 
-  <!-- Contenedor de filtros -->
+
   <div class="filters-container">
-    <!-- Filtros a la izquierda -->
-    <div class="left-filters">
-      <!-- Segmentos de posición y pie hábil -->
-      <ion-segment value="jugador" color="light">
-        <ion-segment-button value="jugador">Todos</ion-segment-button>
-        <ion-segment-button value="arquero">Activo</ion-segment-button>
-      </ion-segment>
 
-      <!-- Filtros de rango -->
-      <div class="range-filters" style="margin-top: 20px">
-        <ion-range min="5" max="40" value="20" pin="true">
-          <ion-label slot="start" style="color: #ff6600">Edad</ion-label>
-        </ion-range>
+<!-- Filtros a la derecha -->
+<div class="right-filters">
+  <!-- Campo de filtro por país -->
+  <input type="text" placeholder="País" [(ngModel)]="countryFilter" />
+    <input type="text" placeholder="Buscar..." [(ngModel)]="searchTerm" />
 
-        <ion-range
-          min="0"
-          max="30"
-          value="10"
-          pin="true"
-          style="margin-top: 10px"
-        >
-          <ion-label slot="start" style="color: #ff6600"
-            >Años desde Fundación</ion-label
-          >
-        </ion-range>
-      </div>
-    </div>
 
-    <!-- Filtros a la derecha -->
-    <div class="right-filters">
-      <input type="text" placeholder="🔍 Buscador" />
-      <input type="text" placeholder="País" />
-      <input type="text" placeholder="Provincia" />
-      <input type="text" placeholder="Ciudad" />
-    </div>
+
+  <!-- Botón para aplicar los filtros -->
+  <ion-button   (click)="applyFilters()">Aplicar filtros</ion-button></div>
+
   </div>
 
   <br />
 
   <!-- Contenedor de tarjetas de clubes -->
   <div class="players-container">
-    <div class="player-card" *ngFor="let club of clubs">
+<div class="player-card" *ngFor="let club of filteredClubs">
       <img [src]="club.profilePhotoUrl || 'https://via.placeholder.com/300x200'" alt="{{ club.nombre }}">
       <div class="player-info">
         <h3>{{ club.nombre }}</h3>

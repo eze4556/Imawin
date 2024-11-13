@@ -1,4 +1,6 @@
 export interface PlayerProfile {
+foot: any;
+birthDate: string|number|Date;
   playerType: 'jugador' | 'arquero'; // Tipo de jugador
   footPreference: 'izquierdo' | 'derecho' | 'ambas'; // Preferencia de pie
   position: 'central' | 'lateral' | 'delantero' | 'enganche' | 'medio'; // Posición en el campo

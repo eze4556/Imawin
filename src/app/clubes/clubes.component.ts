@@ -12,6 +12,15 @@ export class ClubesComponent implements OnInit {
 
   clubs: ClubProfile[] = [];
 
+
+   filteredClubs: ClubProfile[] = [];
+  searchTerm: string = '';
+
+  // Filtros
+  nameFilter: string = '';
+  countryFilter: string = '';
+
+
   constructor(private router: Router,
     private firestoreService: FirestoreService
   ) { }
@@ -24,11 +33,11 @@ export class ClubesComponent implements OnInit {
     this.router.navigate(['profileClub']); // Navega a la ruta 'playerProfile'
   }
 
-  getAllClubs() {
+   getAllClubs() {
     this.firestoreService.getClubs().subscribe(data => {
-      console.log("Datos de clubes obtenidos:", data);
       if (data && data.length > 0) {
         this.clubs = data;
+        this.filteredClubs = data; // Inicializa con todos los clubes
       } else {
         console.log("No se encontraron clubes.");
       }
@@ -37,7 +46,28 @@ export class ClubesComponent implements OnInit {
     });
   }
 
-  navigateTo(route: string) {
+
+
+applyFilters() {
+  const searchTermLower = this.searchTerm.toLowerCase();
+  this.filteredClubs = this.clubs.filter(club =>
+    (!this.searchTerm ||
+     club.nombre?.toLowerCase().includes(searchTermLower) ||
+     club.detalle?.toLowerCase().includes(searchTermLower) ||
+     club.country?.toLowerCase().includes(searchTermLower))
+  );
+}
+
+
+}
+
+//  applyFilters() {
+//     this.filteredClubs = this.clubs.filter(club =>
+//       (!this.nameFilter || club.nombre.toLowerCase().includes(this.nameFilter.toLowerCase())) &&
+//       (!this.countryFilter || club.country.toLowerCase().includes(this.countryFilter.toLowerCase()))
+//     );
+//   }
+//   navigateTo(route: string) {
     this.router.navigate([`/${route}`]);
   }
 
