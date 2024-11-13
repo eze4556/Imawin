@@ -57,6 +57,9 @@ applyFilters() {
      club.country?.toLowerCase().includes(searchTermLower))
   );
 }
+navigateTo(route: string) {
+  this.router.navigate([`/${route}`]);
+}
 
 
 }
@@ -67,8 +70,4 @@ applyFilters() {
 //       (!this.countryFilter || club.country.toLowerCase().includes(this.countryFilter.toLowerCase()))
 //     );
 //   }
-//   navigateTo(route: string) {
-    this.router.navigate([`/${route}`]);
-  }
 
-}
