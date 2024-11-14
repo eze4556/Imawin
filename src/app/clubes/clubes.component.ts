@@ -33,51 +33,31 @@ export class ClubesComponent implements OnInit {
     this.router.navigate(['profileClub']); // Navega a la ruta 'playerProfile'
   }
 
-   getAllClubs() {
+ getAllClubs() {
     this.firestoreService.getClubs().subscribe(data => {
       if (data && data.length > 0) {
         this.clubs = data;
         this.filteredClubs = data; // Inicializa con todos los clubes
       } else {
-        console.log("No se encontraron clubes.");
+        console.log('No se encontraron clubes.');
       }
     }, error => {
-      console.error("Error al obtener los clubes:", error);
+      console.error('Error al obtener los clubes:', error);
     });
   }
 
+  applyFilters() {
+    const searchTermLower = this.searchTerm.toLowerCase();
+    const countryFilterLower = this.countryFilter.toLowerCase();
 
-
-// applyFilters() {
-//   const searchTermLower = this.searchTerm.toLowerCase();
-//   this.filteredClubs = this.clubs.filter(club =>
-//     (!this.searchTerm ||
-//      club.nombre?.toLowerCase().includes(searchTermLower) ||
-//      club.detalle?.toLowerCase().includes(searchTermLower) ||
-//      club.country?.toLowerCase().includes(searchTermLower))
-//   );
-// }
-
-
-
-applyFilters() {
-  const searchTermLower = this.searchTerm.toLowerCase();
-  const countryFilterLower = this.countryFilter.toLowerCase();
-  this.filteredClubs = this.clubs.filter(club =>
-    (!this.searchTerm ||
-     club.nombre?.toLowerCase().includes(searchTermLower) ||
-     club.detalle?.toLowerCase().includes(searchTermLower) ||
-     club.country?.toLowerCase().includes(searchTermLower))
-  );
+    this.filteredClubs = this.clubs.filter(club =>
+      (!this.searchTerm ||
+       club.nombre?.toLowerCase().includes(searchTermLower) ||
+       club.detalle?.toLowerCase().includes(searchTermLower) ||
+       club.country?.toLowerCase().includes(searchTermLower)) &&
+      (!this.countryFilter ||
+       club.country?.toLowerCase().includes(countryFilterLower))
+    );
+  }
 }
 
-
-}
-
-//  applyFilters() {
-//     this.filteredClubs = this.clubs.filter(club =>
-//       (!this.nameFilter || club.nombre.toLowerCase().includes(this.nameFilter.toLowerCase())) &&
-//       (!this.countryFilter || club.country.toLowerCase().includes(this.countryFilter.toLowerCase()))
-//     );
-//   }
-// }

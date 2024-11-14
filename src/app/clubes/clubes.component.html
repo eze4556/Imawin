@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="navigateTo('home')">
+      <ion-button >
         <img
           src="../../assets/icon/70c6a3b2-eab6-49bf-bb62-5941d24c60f7.jfif"
           alt="logo"
@@ -11,10 +11,10 @@
       </ion-button>
     </ion-buttons>
 
-    <ion-button fill="clear" class="nav-button" (click)="navigateTo('Jugadores')">Jugadores</ion-button>
-    <ion-button fill="clear" class="nav-button" (click)="navigateTo('managers')">Representantes</ion-button>
+    <ion-button fill="clear" class="nav-button" >Jugadores</ion-button>
+    <ion-button fill="clear" class="nav-button" >Representantes</ion-button>
     <!-- <ion-button fill="clear" class="nav-button" (click)="navigateTo('clubes')">Clubes</ion-button> -->
-    <ion-button fill="clear" class="nav-button" (click)="navigateTo('dts')">DT</ion-button>
+    <ion-button fill="clear" class="nav-button" >DT</ion-button>
 
     <!-- <ion-title>Imawin</ion-title> -->
     <ion-buttons slot="end">
@@ -46,23 +46,22 @@
 
 
   <div class="filters-container">
-
-<!-- Filtros a la derecha -->
-<div class="right-filters">
-  <!-- Campo de filtro por país -->
-  <!-- <input type="text" placeholder="País" [(ngModel)]="countryFilter" /> -->
-
-    <input type="text" placeholder="País" [(ngModel)]="countryFilter" />
-
-
-    <input type="text" placeholder="Buscar..." [(ngModel)]="searchTerm" />
-
-
-
-  <!-- Botón para aplicar los filtros -->
-  <ion-button   (click)="applyFilters()">Aplicar filtros</ion-button></div>
-
+    <div class="right-filters">
+      <input
+        type="text"
+        placeholder="País"
+        [(ngModel)]="countryFilter"
+        (ngModelChange)="applyFilters()"
+      />
+      <input
+        type="text"
+        placeholder="Buscar..."
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="applyFilters()"
+      />
+    </div>
   </div>
+
 
   <br />
 

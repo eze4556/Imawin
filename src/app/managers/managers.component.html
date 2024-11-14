@@ -45,37 +45,25 @@
   </div>
 
 
-<!-- Contenedor de filtros -->
-<div class="filters-container">
-  <!-- Filtros a la izquierda -->
-  <div class="left-filters">
-    <!-- Segmentos de estado (Todos / Activo) -->
-    <ion-segment [(ngModel)]="statusFilter" color="light">
-      <ion-segment-button value="jugador">Todos</ion-segment-button>
-      <ion-segment-button value="arquero">Activo</ion-segment-button>
-    </ion-segment>
+  <!-- Contenedor de filtros -->
+  <div class="filters-container">
+    <!-- Filtros a la izquierda -->
+    <div class="left-filters">
+      <!-- Segmentos de estado (Todos / Activo) -->
+      <ion-segment [(ngModel)]="statusFilter" color="light" (ngModelChange)="applyFilters()">
+        <ion-segment-button value="jugador">Todos</ion-segment-button>
+        <ion-segment-button value="arquero">Activo</ion-segment-button>
+      </ion-segment>
+    </div>
+
+    <!-- Filtros a la derecha -->
+    <div class="right-filters">
+      <!-- Buscador por nombre -->
+      <input type="text" placeholder="🔍 Buscador" [(ngModel)]="searchQuery" (ngModelChange)="applyFilters()" />
+      <!-- Filtro por país -->
+      <input type="text" placeholder="País" [(ngModel)]="countryFilter" (ngModelChange)="applyFilters()" />
+    </div>
   </div>
-
-  <!-- Filtros a la derecha -->
-  <div class="right-filters">
-    <!-- Buscador por nombre -->
-    <input type="text" placeholder="🔍 Buscador" [(ngModel)]="searchQuery" />
-    <!-- Filtro por país -->
-    <input type="text" placeholder="País" [(ngModel)]="countryFilter" />
-
-    <!-- Botón para aplicar filtros -->
-<div class="apply-filters-button">
-  <button (click)="applyFilters()">Aplicar filtros</button>
-</div>
-
-
-  </div>
-</div>
-
-
-<!-- <div class="apply-filters-button">
-  <button (click)="applyFilters()">Aplicar filtros</button>
-</div> -->
 
 
   <br />
