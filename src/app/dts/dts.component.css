@@ -267,3 +267,36 @@ ion-content {
     margin-right: 5px;
 }
 
+
+
+ .boton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: #ff6600; /* Fondo del contenedor */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra del contenedor */
+    max-width: 320px;
+    margin: 10px auto;
+    width: 100%;
+  }
+
+  .boton ion-select {
+    --placeholder-color: #999; /* Color del texto del placeholder */
+    --color: #333; /* Color del texto normal */
+    --padding-start: 10px; /* Padding a la izquierda */
+    --background: #fff; /* Fondo blanco */
+    --border-radius: 8px; /* Bordes redondeados */
+    --box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra de la caja */
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .boton ion-select .select-icon {
+    color: #ff6600; /* Color del icono del select */
+  }
+
+  .boton ion-select .select-text {
+    color: #333; /* Color del texto dentro del select */
+  }

@@ -34,7 +34,6 @@
         class="button-primary"
         >Cuenta</ion-button
       >
-      <!-- <ion-button color="white" style="background-color: #ff6600;" class="button-primary">Comenzar Gratis</ion-button> -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -44,50 +43,47 @@
     <h1 class="gradient-text">Perfiles de Directores Tecnico</h1>
   </div>
 
-  <!-- Contenedor de filtros -->
+
+
+ <!-- Contenedor de filtros -->
   <div class="filters-container">
     <!-- Filtros a la izquierda -->
     <div class="left-filters">
-      <!-- Segmentos de posición y pie hábil -->
-      <ion-segment value="jugador" color="light">
-        <ion-segment-button value="jugador">Todos</ion-segment-button>
-        <ion-segment-button value="arquero">Activo</ion-segment-button>
+      <!-- Filtro de estado -->
+      <ion-segment [(ngModel)]="selectedStatus" (ionChange)="updateFilters()">
+        <ion-segment-button value="">Todos</ion-segment-button>
+        <ion-segment-button value="Activo">Activo</ion-segment-button>
+        <ion-segment-button value="Inactivo">Inactivo</ion-segment-button>
       </ion-segment>
 
-      <!-- Filtros de rango -->
-      <div class="range-filters" style="margin-top: 20px">
-        <ion-range min="5" max="40" value="20" pin="true">
-          <ion-label slot="start" style="color: #ff6600">Edad</ion-label>
-        </ion-range>
-
-        <ion-range
-          min="0"
-          max="30"
-          value="10"
-          pin="true"
-          style="margin-top: 10px"
-        >
-          <ion-label slot="start" style="color: #ff6600"
-            >Años experiencia</ion-label
-          >
-        </ion-range>
+<div class="boton" >
+      <ion-select [(ngModel)]="selectedStyle" placeholder="Estilo de Juego" (ionChange)="updateFilters()">
+        <ion-select-option value="">Todos</ion-select-option>
+        <ion-select-option value="Ofensivo">Ofensivo</ion-select-option>
+        <ion-select-option value="Defensivo">Defensivo</ion-select-option>
+        <ion-select-option value="Ambas">Ambas</ion-select-option>
+        <ion-select-option value="Depende">Depende</ion-select-option>
+      </ion-select>
       </div>
+
     </div>
 
     <!-- Filtros a la derecha -->
     <div class="right-filters">
-      <input type="text" placeholder="🔍 Buscador" />
-      <input type="text" placeholder="País" />
-      <input type="text" placeholder="Provincia" />
-      <input type="text" placeholder="Ciudad" />
+      <!-- Buscador -->
+      <ion-input placeholder="🔍 Buscador" [(ngModel)]="searchText" (ionInput)="updateFilters()"></ion-input>
+      <!-- Filtro de país -->
+      <ion-input placeholder="País" [(ngModel)]="selectedCountry" (ionInput)="updateFilters()"></ion-input>
     </div>
   </div>
 
-  <br />
 
+  <br />
   <!-- Contenedor de tarjetas de DTs -->
   <div class="players-container">
-    <div class="player-card" *ngFor="let dt of dts">
+    <!-- <div class="player-card" *ngFor="let dt of dts"> -->
+        <div class="player-card" *ngFor="let dt of filteredDts">
+
       <img [src]="dt.profilePhotoUrl || 'https://via.placeholder.com/300x200'" alt="{{ dt.playerName }}">
       <div class="player-info">
         <h3>{{ dt.playerName }}</h3>

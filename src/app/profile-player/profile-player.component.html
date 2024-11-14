@@ -32,17 +32,17 @@
  <div class="filters-container">
     <!-- Filtros a la izquierda -->
     <div class="left-filters">
-      <ion-segment [(ngModel)]="selectedType" color="light">
+      <ion-segment [(ngModel)]="selectedType" color="light" (ngModelChange)="aplicarFiltros()">
         <ion-segment-button value="jugador">Jugador</ion-segment-button>
         <ion-segment-button value="arquero">Arquero</ion-segment-button>
       </ion-segment>
 
-      <ion-segment [(ngModel)]="selectedFoot" color="light" style="margin-top: 10px;">
+      <ion-segment [(ngModel)]="selectedFoot" color="light" style="margin-top: 10px;" (ngModelChange)="aplicarFiltros()">
         <ion-segment-button value="izquierdo">Izquierdo</ion-segment-button>
         <ion-segment-button value="derecho">Derecho</ion-segment-button>
       </ion-segment>
 
-      <ion-segment [(ngModel)]="selectedPosition" color="light" style="margin-top: 10px;">
+      <ion-segment [(ngModel)]="selectedPosition" color="light" style="margin-top: 10px;" (ngModelChange)="aplicarFiltros()">
         <ion-segment-button value="central">Central</ion-segment-button>
         <ion-segment-button value="lateral">Lateral</ion-segment-button>
         <ion-segment-button value="centro">Centro</ion-segment-button>
@@ -54,13 +54,21 @@
 
     <!-- Filtros a la derecha -->
     <div class="right-filters">
-      <input type="text" [(ngModel)]="searchQuery" placeholder="🔍 Buscador">
-      <input type="text" [(ngModel)]="country" placeholder="País">
-      <ion-button (click)="aplicarFiltros()">Filtrar</ion-button>
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        placeholder="🔍 Buscador"
+        (ngModelChange)="aplicarFiltros()"
+      />
+
+      <input
+        type="text"
+        [(ngModel)]="country"
+        placeholder="País"
+        (ngModelChange)="aplicarFiltros()"
+      />
     </div>
   </div>
-
-
 
 
 <div class="players-container">
