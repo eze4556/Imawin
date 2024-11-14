@@ -10,6 +10,21 @@ import { FirestoreService } from 'src/services/firestore.service';
 })
 export class DtsComponent implements OnInit {
   dts: DtProfile[] = [];
+
+
+  filteredDts: DtProfile[] = [];
+
+  // Variables para los filtros
+  selectedStatus: 'Activo' | 'Inactivo' | '' = '';
+  selectedStyle: 'Ofensivo' | 'Defensivo' | 'Ambas' | 'Depende' | '' = '';
+  searchText: string = '';
+  selectedCountry: string = '';
+
+
+
+
+
+
   constructor(private router: Router,
     private firestoreService: FirestoreService
   ) { }
@@ -19,7 +34,7 @@ export class DtsComponent implements OnInit {
   }
 
    navigateToAgente() {
-    this.router.navigate(['profileDt']); // Navega a la ruta 'playerProfile'
+    this.router.navigate(['profileDt']);
   }
 
   getAllDts() {
@@ -27,6 +42,7 @@ export class DtsComponent implements OnInit {
       console.log("Datos de DTs obtenidos:", data);
       if (data && data.length > 0) {
         this.dts = data;
+        this.applyFilters(); // Aplica filtros después de obtener los datos
       } else {
         console.log("No se encontraron DTs.");
       }
@@ -35,4 +51,18 @@ export class DtsComponent implements OnInit {
     });
   }
 
+  // Función para aplicar los filtros
+  applyFilters() {
+    this.filteredDts = this.dts.filter(dt =>
+      (this.selectedStatus ? dt.dt === this.selectedStatus : true) &&
+      (this.selectedStyle ? dt.gusto === this.selectedStyle : true) &&
+      (this.selectedCountry ? dt.country.includes(this.selectedCountry) : true) &&
+      (this.searchText ? dt.playerName.toLowerCase().includes(this.searchText.toLowerCase()) : true)
+    );
+  }
+
+  // Función para actualizar los filtros
+  updateFilters() {
+    this.applyFilters();
+  }
 }

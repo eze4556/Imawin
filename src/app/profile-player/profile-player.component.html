@@ -56,7 +56,9 @@
     <div class="right-filters">
       <input type="text" [(ngModel)]="searchQuery" placeholder="🔍 Buscador">
       <input type="text" [(ngModel)]="country" placeholder="País">
-      <ion-button (click)="aplicarFiltros()">Filtrar</ion-button>
+      <div class="apply-filters-button">
+      <ion-button  (click)="aplicarFiltros()">Filtrar</ion-button>
+      </div>
     </div>
   </div>
 
