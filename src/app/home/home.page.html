@@ -1,24 +1,64 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="navigateTo('home')">
-        <img src="../../assets/icon/70c6a3b2-eab6-49bf-bb62-5941d24c60f7.jfif" alt="logo" class="logo" />
-      </ion-button>
-    </ion-buttons>
-    <ion-button fill="clear" class="nav-button" (click)="navigateTo('Jugadores')">Jugadores</ion-button>
-    <ion-button fill="clear" class="nav-button" (click)="navigateTo('managers')">Representantes</ion-button>
-    <ion-button fill="clear" class="nav-button" (click)="navigateTo('clubes')">Clubes</ion-button>
-    <ion-button fill="clear" class="nav-button" (click)="navigateTo('dts')">DT</ion-button>
+    <ion-grid>
+      <ion-row class="header-content ion-align-items-center">
+        <!-- Logo -->
+        <ion-col size="12" size-md="3" class="logo-column">
+          <ion-button fill="clear" (click)="navigateTo('home')" class="logo-button">
+            <img src="../../assets/icon/70c6a3b2-eab6-49bf-bb62-5941d24c60f7.jfif" alt="logo" class="logo" />
+          </ion-button>
+        </ion-col>
 
-    <ion-buttons slot="end" class="buttons-container">
-      <ion-button (click)="navigateTo('login')" class="login-button">INICIAR SESIÓN</ion-button>
-      <ion-button (click)="navigateTo('register')" class="login-button" style="background-color: #ff6600; color: white;">COMENZAR GRATIS</ion-button>
-    </ion-buttons>
+        <!-- Navigation buttons (hidden on mobile) -->
+        <ion-col size="12" size-md="6" class="nav-buttons-column">
+          <ion-buttons class="nav-buttons">
+            <ion-button fill="clear" class="nav-button" (click)="navigateTo('Jugadores')">Jugadores</ion-button>
+            <ion-button fill="clear" class="nav-button" (click)="navigateTo('managers')">Representantes</ion-button>
+            <ion-button fill="clear" class="nav-button" (click)="navigateTo('clubes')">Clubes</ion-button>
+            <ion-button fill="clear" class="nav-button" (click)="navigateTo('dts')">DT</ion-button>
+          </ion-buttons>
+        </ion-col>
+
+        <!-- Login and Register buttons (hidden on mobile) -->
+        <ion-col size="12" size-md="3" class="buttons-column">
+          <ion-buttons class="buttons-container">
+            <ion-button (click)="navigateTo('login')" class="login-button">INICIAR SESIÓN</ion-button>
+            <ion-button (click)="navigateTo('register')" class="start-button">COMENZAR GRATIS</ion-button>
+          </ion-buttons>
+        </ion-col>
+
+        <!-- Hamburger menu (only visible on mobile) -->
+        <ion-col size="12" class="menu-hamburger-column">
+          <ion-menu-button auto-hide="false" class="menu-button"></ion-menu-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 
+<!-- Sidebar menu -->
+<ion-menu side="start" menuId="first" contentId="main-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menú</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content>
+  <ion-content>
+    <ion-list>
+      <ion-item button (click)="navigateTo('Jugadores')">Jugadores</ion-item>
+      <ion-item button (click)="navigateTo('managers')">Representantes</ion-item>
+      <ion-item button (click)="navigateTo('clubes')">Clubes</ion-item>
+      <ion-item button (click)="navigateTo('dts')">DT</ion-item>
+      <ion-item button (click)="navigateTo('login')">INICIAR SESIÓN</ion-item>
+      <ion-item button (click)="navigateTo('register')">COMENZAR GRATIS</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+
+
+<ion-content id="main-content">
   <div class="hero">
     <div class="text-content">
       <h1>Donde el talento se encuentra con el éxito</h1>
@@ -68,7 +108,7 @@
     <div class="text-content">
       <h2>Como Club</h2>
       <p>Gestiona tus contactos con agentes y encuentra jugadores de diversas categorías y regiones del mundo desde una sola plataforma.</p>
-      <ion-button color="white" style="background-color: #ff6600;" class="register-button">Crear mi perfil de club</ion-button>
+      <ion-button color="white" style="background-color: #ff6600;" class="register-button" (click)="navigateTo('register')">Crear mi perfil de club</ion-button>
     </div>
   </div>
 
@@ -90,9 +130,9 @@
 
       <div class="privacy-links">
         <a href="#" style="color: #ff6600;">Políticas de privacidad</a>
-        <br>
         <a href="#" style="color: #ff6600;">Términos y condiciones</a>
       </div>
     </div>
   </ion-footer>
+
 </ion-content>
