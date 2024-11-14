@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FirestoreService } from 'src/services/firestore.service';
 
@@ -11,7 +12,9 @@ export class PerfilComponent implements OnInit {
   currentUser: any;
   userProfileData: any;
 
-  constructor(private firestoreService: FirestoreService) {}
+  constructor(private firestoreService: FirestoreService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.loadCurrentUser();
@@ -60,5 +63,9 @@ export class PerfilComponent implements OnInit {
       this.userProfileData = profileData[0];  // Guarda el primer elemento del arreglo
       console.log(`Datos de perfil de ${tipo_usuario}:`, this.userProfileData);
     });
+  }
+
+  navigateTo(route: string) {
+    this.router.navigate([`/${route}`]);
   }
 }

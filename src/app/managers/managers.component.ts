@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ManagerProfile } from 'src/models/manager.model';
 import { FirestoreService } from 'src/services/firestore.service';
 
@@ -21,7 +22,9 @@ export class ManagersComponent  implements OnInit {
 
 
 
-  constructor(private firestoreService: FirestoreService) { }
+  constructor(private firestoreService: FirestoreService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.getAllManagers();
@@ -48,5 +51,9 @@ export class ManagersComponent  implements OnInit {
 
       return matchesStatus && matchesCountry && matchesSearch;
     });
+  }
+
+  navigateTo(route: string) {
+    this.router.navigate([`/${route}`]);
   }
 }

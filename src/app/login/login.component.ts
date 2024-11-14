@@ -122,6 +122,10 @@ async loginWithGoogle() {
     toast.present();
   }
 
+  navigateTo(route: string) {
+    this.router.navigate([`/${route}`]);
+  }
+
 
   clubes() {
     this.router.navigate(['clubes']); // Navega a la ruta 'playerProfile'

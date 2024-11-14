@@ -65,12 +65,19 @@ applyFilters() {
   const countryFilterLower = this.countryFilter.toLowerCase();
   this.filteredClubs = this.clubs.filter(club =>
     (!this.searchTerm ||
-      club.nombre?.toLowerCase().includes(searchTermLower) ||
-      club.detalle?.toLowerCase().includes(searchTermLower) ||
-      club.country?.toLowerCase().includes(searchTermLower)) &&
-    (!this.countryFilter || club.country?.toLowerCase().includes(countryFilterLower))
+     club.nombre?.toLowerCase().includes(searchTermLower) ||
+     club.detalle?.toLowerCase().includes(searchTermLower) ||
+     club.country?.toLowerCase().includes(searchTermLower))
   );
 }
 
+
 }
 
+//  applyFilters() {
+//     this.filteredClubs = this.clubs.filter(club =>
+//       (!this.nameFilter || club.nombre.toLowerCase().includes(this.nameFilter.toLowerCase())) &&
+//       (!this.countryFilter || club.country.toLowerCase().includes(this.countryFilter.toLowerCase()))
+//     );
+//   }
+// }

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button>
+      <ion-button (click)="navigateTo('home')">
         <img src="../../assets/icon/70c6a3b2-eab6-49bf-bb62-5941d24c60f7.jfif" alt="logo" class="logo" />
       </ion-button>
     </ion-buttons>
@@ -25,7 +25,7 @@
       <p style="color: #ff6600;">
         Imawin ayuda a futbolistas, agentes, clubes y directores tecnicos a conectarse para alcanzar nuevas oportunidades en el mundo del fútbol.
       </p>
-      <ion-button (click)="navigateToDt()" color="white" style="background-color: #ff6600;" class="register-button">Crear mi perfil como Dt</ion-button>
+      <ion-button (click)="navigateTo('register')" color="white" style="background-color: #ff6600;" class="register-button">Crear mi perfil como Dt</ion-button>
     </div>
     <div class="image-content">
       <img src="../../assets/icon/back-o-soccer-player-with-soccer-ball-free-photo.jpg" alt="jugadores de fútbol" />
@@ -46,7 +46,7 @@
     <div class="text-content">
       <h2>Como futbolista</h2>
       <p>Crea tu perfil, sube tus videos destacados y muestra tus estadísticas. Sé descubierto por agentes y clubes de todo el mundo.</p>
-      <ion-button color="white" style="background-color: #ff6600;" class="register-button" (click)="navigateToClubes()"   >Crear mi perfil de futbolista</ion-button>
+      <ion-button color="white" style="background-color: #ff6600;" class="register-button" (click)="navigateTo('register')"   >Crear mi perfil de futbolista</ion-button>
     </div>
   </div>
 
@@ -54,7 +54,7 @@
     <div class="text-content">
       <h2 style="color: white;">Como agente</h2>
       <p style="color: white;">Accede a una base de datos global de talentos. Utiliza herramientas avanzadas para descubrir jugadores que encajen con tus necesidades y contacta directamente con ellos.</p>
-      <ion-button color="#ff6600" style="background-color: #ff6600 "  class="register-button" (click)="goToManagerAgregar()" >Crear mi perfil de agente</ion-button>
+      <ion-button color="#ff6600" style="background-color: #ff6600 "  class="register-button" (click)="navigateTo('register')" >Crear mi perfil de agente</ion-button>
     </div>
     <div class="image-content">
       <img src="../../assets/icon/images (1).jfif" alt="agente y jugador de fútbol" />
