@@ -63,19 +63,18 @@
     <h1 class="gradient-text">Perfil de Managers</h1>
   </div>
 
-
-
   <!-- Contenedor de filtros -->
   <div class="filters-container">
     <!-- Filtros a la izquierda -->
     <div class="left-filters">
       <!-- Segmentos de estado (Todos / Activo) -->
-      <ion-segment [(ngModel)]="statusFilter" color="light" (ngModelChange)="applyFilters()">
+      <div [(ngModel)]="statusFilter" color="light" (ngModelChange)="applyFilters()">
       <!-- Segmentos de estado (Todos / Activo) -->
       <ion-segment [(ngModel)]="statusFilter" color="light" (ngModelChange)="applyFilters()">
         <ion-segment-button value="jugador">Todos</ion-segment-button>
         <ion-segment-button value="arquero">Activo</ion-segment-button>
       </ion-segment>
+    </div>
     </div>
 
     <!-- Filtros a la derecha -->
@@ -117,7 +116,7 @@
       </div>
     </div>
   </div>
-
+  </div>
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
