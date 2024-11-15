@@ -67,8 +67,14 @@
 
 
  <div class="filters-container">
+
+ <div class="filters-container">
     <!-- Filtros a la izquierda -->
     <div class="left-filters">
+      <ion-segment [(ngModel)]="selectedType" color="light" (ngModelChange)="aplicarFiltros()">
+        <ion-segment-button value="jugador">Jugador</ion-segment-button>
+        <ion-segment-button value="arquero">Arquero</ion-segment-button>
+      </ion-segment>
       <ion-segment [(ngModel)]="selectedType" color="light" (ngModelChange)="aplicarFiltros()">
         <ion-segment-button value="jugador">Jugador</ion-segment-button>
         <ion-segment-button value="arquero">Arquero</ion-segment-button>
@@ -78,7 +84,19 @@
         <ion-segment-button value="izquierdo">Izquierdo</ion-segment-button>
         <ion-segment-button value="derecho">Derecho</ion-segment-button>
       </ion-segment>
+      <ion-segment [(ngModel)]="selectedFoot" color="light" style="margin-top: 10px;" (ngModelChange)="aplicarFiltros()">
+        <ion-segment-button value="izquierdo">Izquierdo</ion-segment-button>
+        <ion-segment-button value="derecho">Derecho</ion-segment-button>
+      </ion-segment>
 
+      <ion-segment [(ngModel)]="selectedPosition" color="light" style="margin-top: 10px;" (ngModelChange)="aplicarFiltros()">
+        <ion-segment-button value="central">Central</ion-segment-button>
+        <ion-segment-button value="lateral">Lateral</ion-segment-button>
+        <ion-segment-button value="centro">Centro</ion-segment-button>
+        <ion-segment-button value="delantero">Delantero</ion-segment-button>
+        <ion-segment-button value="enganche">Enganche</ion-segment-button>
+        <ion-segment-button value="extremo">Extremo</ion-segment-button>
+      </ion-segment>
       <ion-segment [(ngModel)]="selectedPosition" color="light" style="margin-top: 10px;" (ngModelChange)="aplicarFiltros()">
         <ion-segment-button value="central">Central</ion-segment-button>
         <ion-segment-button value="lateral">Lateral</ion-segment-button>
@@ -104,7 +122,21 @@
         placeholder="País"
         (ngModelChange)="aplicarFiltros()"
       />
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        placeholder="🔍 Buscador"
+        (ngModelChange)="aplicarFiltros()"
+      />
+
+      <input
+        type="text"
+        [(ngModel)]="country"
+        placeholder="País"
+        (ngModelChange)="aplicarFiltros()"
+      />
     </div>
+  </div>
   </div>
 
 
@@ -112,9 +144,17 @@
 
   <!-- Muestra cada jugador filtrado en una tarjeta -->
     <div class="player-card" *ngFor="let player of filteredPlayers">
+
+  <!-- Muestra cada jugador filtrado en una tarjeta -->
+    <div class="player-card" *ngFor="let player of filteredPlayers">
     <img [src]="player.profilePhotoUrl || 'https://via.placeholder.com/300x200'" alt="{{ player.playerName }}">
     <div class="player-info">
       <h3>{{ player.playerName }}</h3>
+      <p><strong>Posición:</strong> {{ player.position }}</p>
+      <p><strong>País:</strong> {{ player.country }} - {{ player.province }}</p>
+      <p><strong>Experiencia:</strong> {{ player.yearsOfExperience }} años</p>
+      <p><strong>Fecha de Nacimiento:</strong> {{ player.birthDate | date: 'dd/MM/yyyy' }}</p>
+      <p><strong>Pierna Hábil:</strong> {{ player.foot }} - <strong>Altura:</strong> {{ player.height }} cm</p>
       <p><strong>Posición:</strong> {{ player.position }}</p>
       <p><strong>País:</strong> {{ player.country }} - {{ player.province }}</p>
       <p><strong>Experiencia:</strong> {{ player.yearsOfExperience }} años</p>
@@ -127,6 +167,11 @@
     </div>
   </div>
 </div>
+
+
+
+
+
 
 
 

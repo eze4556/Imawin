@@ -3,6 +3,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
 import { GoogleAuthProvider } from 'firebase/auth';
+import { map } from 'rxjs/operators';
+import { PlayerProfile } from 'src/models/playerProfile.model';
 import { ClubProfile } from 'src/models/club.model';
 import { DtProfile } from 'src/models/dt.model';
 import { ManagerProfile } from 'src/models/manager.model';
@@ -155,10 +157,41 @@ export class FirestoreService {
 
 //FUTBOLISTA
 
-// Cambiar playerProfiles a players
+
 getPlayers(): Observable<any[]> {
   return this.firestore.collection('player').valueChanges(); // Aquí asegúrate que sea 'players'
 }
+
+
+
+filterPlayers(filters: Partial<PlayerProfile>): Observable<PlayerProfile[]> {
+  return this.getPlayers().pipe(
+    map((players) =>
+      players.filter((player) =>
+        Object.keys(filters).every((key) => {
+          const filterKey = key as keyof PlayerProfile;
+          const filterValue = filters[filterKey];
+          const playerValue = player[filterKey];
+          if (filterValue === undefined || filterValue === null) return true;
+          if (typeof filterValue === 'string') {
+            return playerValue
+              ?.toString()
+              ?.toLowerCase()
+              ?.includes(filterValue.toLowerCase());
+          }
+          return playerValue === filterValue;
+        })
+      )
+    )
+  );
+}
+
+
+
+
+
+
+
 
 
 

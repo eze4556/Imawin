@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; // Importa el servicio Router
 import { PlayerProfile } from 'src/models/playerProfile.model';
+import { PlayerProfile } from 'src/models/playerProfile.model';
 import { FirestoreService } from 'src/services/firestore.service';
 
 
@@ -22,11 +23,21 @@ export class ProfilePlayerComponent implements OnInit {
   searchQuery: string = '';
   country: string = '';
 
+    filteredPlayers: PlayerProfile[] = [];
+
+  // Propiedades de los filtros
+  selectedType: string = '';
+  selectedFoot: string = '';
+  selectedPosition: string = '';
+  searchQuery: string = '';
+  country: string = '';
+
   constructor(private router: Router,private firestoreService: FirestoreService) { }
 
   ngOnInit() {
 
         this.getAllPlayers();
+
 
 
   }
@@ -39,7 +50,18 @@ export class ProfilePlayerComponent implements OnInit {
 getAllPlayers() {
     this.firestoreService.getPlayers().subscribe((data: PlayerProfile[]) => {
       console.log("Datos de jugadores obtenidos:", data);
+getAllPlayers() {
+    this.firestoreService.getPlayers().subscribe((data: PlayerProfile[]) => {
+      console.log("Datos de jugadores obtenidos:", data);
       this.players = data;
+
+              this.filteredPlayers = data; // Inicia con todos los jugadores
+
+
+    }, error => {
+      console.error("Error al obtener los jugadores:", error);
+    });
+  }
 
               this.filteredPlayers = data; // Inicia con todos los jugadores
 

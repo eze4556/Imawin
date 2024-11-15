@@ -66,9 +66,17 @@
 
 
  <!-- Contenedor de filtros -->
+
+
+ <!-- Contenedor de filtros -->
   <div class="filters-container">
     <!-- Filtros a la izquierda -->
     <div class="left-filters">
+      <!-- Filtro de estado -->
+      <ion-segment [(ngModel)]="selectedStatus" (ionChange)="updateFilters()">
+        <ion-segment-button value="">Todos</ion-segment-button>
+        <ion-segment-button value="Activo">Activo</ion-segment-button>
+        <ion-segment-button value="Inactivo">Inactivo</ion-segment-button>
       <!-- Filtro de estado -->
       <ion-segment [(ngModel)]="selectedStatus" (ionChange)="updateFilters()">
         <ion-segment-button value="">Todos</ion-segment-button>
@@ -84,7 +92,16 @@
         <ion-select-option value="Ambas">Ambas</ion-select-option>
         <ion-select-option value="Depende">Depende</ion-select-option>
       </ion-select>
+<div class="boton" >
+      <ion-select [(ngModel)]="selectedStyle" placeholder="Estilo de Juego" (ionChange)="updateFilters()">
+        <ion-select-option value="">Todos</ion-select-option>
+        <ion-select-option value="Ofensivo">Ofensivo</ion-select-option>
+        <ion-select-option value="Defensivo">Defensivo</ion-select-option>
+        <ion-select-option value="Ambas">Ambas</ion-select-option>
+        <ion-select-option value="Depende">Depende</ion-select-option>
+      </ion-select>
       </div>
+
 
     </div>
 
@@ -94,13 +111,21 @@
       <ion-input placeholder="🔍 Buscador" [(ngModel)]="searchText" (ionInput)="updateFilters()"></ion-input>
       <!-- Filtro de país -->
       <ion-input placeholder="País" [(ngModel)]="selectedCountry" (ionInput)="updateFilters()"></ion-input>
+      <!-- Buscador -->
+      <ion-input placeholder="🔍 Buscador" [(ngModel)]="searchText" (ionInput)="updateFilters()"></ion-input>
+      <!-- Filtro de país -->
+      <ion-input placeholder="País" [(ngModel)]="selectedCountry" (ionInput)="updateFilters()"></ion-input>
     </div>
   </div>
+
 
 
   <br />
   <!-- Contenedor de tarjetas de DTs -->
   <div class="players-container">
+    <!-- <div class="player-card" *ngFor="let dt of dts"> -->
+        <div class="player-card" *ngFor="let dt of filteredDts">
+
     <!-- <div class="player-card" *ngFor="let dt of dts"> -->
         <div class="player-card" *ngFor="let dt of filteredDts">
 

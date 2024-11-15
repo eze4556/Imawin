@@ -64,8 +64,21 @@
   </div>
 
 
+
   <div class="filters-container">
     <div class="right-filters">
+      <input
+        type="text"
+        placeholder="País"
+        [(ngModel)]="countryFilter"
+        (ngModelChange)="applyFilters()"
+      />
+      <input
+        type="text"
+        placeholder="Buscar..."
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="applyFilters()"
+      />
       <input
         type="text"
         placeholder="País"
@@ -82,10 +95,12 @@
   </div>
 
 
+
   <br />
 
   <!-- Contenedor de tarjetas de clubes -->
   <div class="players-container">
+<div class="player-card" *ngFor="let club of filteredClubs">
 <div class="player-card" *ngFor="let club of filteredClubs">
       <img [src]="club.profilePhotoUrl || 'https://via.placeholder.com/300x200'" alt="{{ club.nombre }}">
       <div class="player-info">

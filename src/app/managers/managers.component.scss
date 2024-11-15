@@ -225,9 +225,17 @@ ion-footer {
   padding: 20px;
   text-align: center;
   border-top: 1px solid #ddd;
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #ddd;
 }
 
 .footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -236,14 +244,20 @@ ion-footer {
 
 .social-icons {
   margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .social-icons a {
   margin: 0 10px;
   text-decoration: none;
+  margin: 0 10px;
+  text-decoration: none;
 }
 
 .privacy-links a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #ff6600;
   text-decoration: none;
   font-size: 14px;
   color: #ff6600;
@@ -411,6 +425,33 @@ ion-content {
     margin-right: 5px;
 }
 
+.apply-filters-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.apply-filters-button button {
+  background-color: #BA5825; /* Color de fondo del botón */
+  color: #ffffff; /* Color del texto */
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.apply-filters-button button:hover {
+  background-color: #8c431c; /* Color de fondo al pasar el cursor */
+  transform: scale(1.05); /* Efecto de ampliación */
+}
+
+.apply-filters-button button:active {
+  transform: scale(0.98); /* Efecto de pulsado */
+}
 .apply-filters-button {
   display: flex;
   justify-content: center;

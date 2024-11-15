@@ -64,10 +64,13 @@
   </div>
 
 
+
   <!-- Contenedor de filtros -->
   <div class="filters-container">
     <!-- Filtros a la izquierda -->
     <div class="left-filters">
+      <!-- Segmentos de estado (Todos / Activo) -->
+      <ion-segment [(ngModel)]="statusFilter" color="light" (ngModelChange)="applyFilters()">
       <!-- Segmentos de estado (Todos / Activo) -->
       <ion-segment [(ngModel)]="statusFilter" color="light" (ngModelChange)="applyFilters()">
         <ion-segment-button value="jugador">Todos</ion-segment-button>
@@ -81,8 +84,13 @@
       <input type="text" placeholder="🔍 Buscador" [(ngModel)]="searchQuery" (ngModelChange)="applyFilters()" />
       <!-- Filtro por país -->
       <input type="text" placeholder="País" [(ngModel)]="countryFilter" (ngModelChange)="applyFilters()" />
+      <!-- Buscador por nombre -->
+      <input type="text" placeholder="🔍 Buscador" [(ngModel)]="searchQuery" (ngModelChange)="applyFilters()" />
+      <!-- Filtro por país -->
+      <input type="text" placeholder="País" [(ngModel)]="countryFilter" (ngModelChange)="applyFilters()" />
     </div>
   </div>
+
 
 
   <br />
@@ -91,6 +99,8 @@
 
   <!-- Contenedor de tarjetas de Managers -->
   <div class="players-container">
+    <!-- <div class="player-card" *ngFor="let manager of managers"> -->
+      <div class="player-card" *ngFor="let manager of filteredManagers">
     <!-- <div class="player-card" *ngFor="let manager of managers"> -->
       <div class="player-card" *ngFor="let manager of filteredManagers">
       <img [src]="manager.profilePhotoUrl || 'https://via.placeholder.com/300x200'" alt="{{ manager.playerName }}">
