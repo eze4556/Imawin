@@ -34,56 +34,8 @@ export class HomePage  implements OnInit {
     });
   }
 
-
-
-
-   navigateToPlayerProfile() {
-    this.router.navigate(['crearJugador']); // Navega a la ruta 'playerProfile'
+  navigateTo(route: string) {
+    this.router.navigate([`/${route}`]);
   }
-
-
-
-  navigateManager(){
-    this.router.navigate(['managerAgregar']); // Navega a la ruta 'playerProfile'
-
-  }
-
- navigateToClubes() {
-    this.router.navigate(['clubAgregar']); // Navega a la ruta 'playerProfile'
-  }
-
-
- navigateToDt() {
-    this.router.navigate(['dtAgregar']); // Navega a la ruta 'playerProfile'
-  }
-
-
-   navigateToRegister() {
-    this.router.navigate(['register']); // Navega a la ruta 'playerProfile'
-  }
-
-
-    goToManagerAgregar() {
-    this.router.navigate(['/managerAgregar']);
-  }
-
-
-
-  clubes() {
-    this.router.navigate(['clubes']); // Navega a la ruta 'playerProfile'
-  }
-
-  jugadores() {
-    this.router.navigate(['Jugadores']); // Navega a la ruta 'playerProfile'
-  }
-
- manager() {
-    this.router.navigate(['playerDetail']); // Navega a la ruta 'playerProfile'
-  }
-
-  dts() {
-    this.router.navigate(['dts']); // Navega a la ruta 'playerProfile'
-  }
-
 
 }

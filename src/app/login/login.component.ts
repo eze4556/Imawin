@@ -122,25 +122,7 @@ async loginWithGoogle() {
     toast.present();
   }
 
-
-  clubes() {
-    this.router.navigate(['clubes']); // Navega a la ruta 'playerProfile'
+  navigateTo(route: string) {
+    this.router.navigate([`/${route}`]);
   }
-
-  jugadores() {
-    this.router.navigate(['Jugadores']); // Navega a la ruta 'playerProfile'
-  }
-
- manager() {
-    this.router.navigate(['playerDetail']); // Navega a la ruta 'playerProfile'
-  }
-
-  dts() {
-    this.router.navigate(['dts']); // Navega a la ruta 'playerProfile'
-  }
-
-  navigateToRegister() {
-    this.router.navigate(['register']); // Navega a la ruta 'playerProfile'
-  }
-
 }

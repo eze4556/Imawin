@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; // Importa el servicio Router
+import { PlayerProfile } from 'src/models/playerProfile.model';
 import { FirestoreService } from 'src/services/firestore.service';
 
 
@@ -12,12 +13,21 @@ export class ProfilePlayerComponent implements OnInit {
 
    players: any[] = [];
 
+    filteredPlayers: PlayerProfile[] = [];
+
+  // Propiedades de los filtros
+  selectedType: string = '';
+  selectedFoot: string = '';
+  selectedPosition: string = '';
+  searchQuery: string = '';
+  country: string = '';
+
   constructor(private router: Router,private firestoreService: FirestoreService) { }
 
-  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit() {
 
         this.getAllPlayers();
+
 
   }
 
@@ -26,18 +36,33 @@ export class ProfilePlayerComponent implements OnInit {
   }
 
 
- getAllPlayers() {
-  this.firestoreService.getPlayers().subscribe(data => {
-    console.log("Datos de jugadores obtenidos:", data); // Verificar si los datos llegan aquí
-    if (data && data.length > 0) {
+getAllPlayers() {
+    this.firestoreService.getPlayers().subscribe((data: PlayerProfile[]) => {
+      console.log("Datos de jugadores obtenidos:", data);
       this.players = data;
-    } else {
-      console.log("No se encontraron jugadores.");
-    }
-  }, error => {
-    console.error("Error al obtener los jugadores:", error);
-  });
-}
+
+              this.filteredPlayers = data; // Inicia con todos los jugadores
 
 
+    }, error => {
+      console.error("Error al obtener los jugadores:", error);
+    });
+  }
+
+
+ aplicarFiltros() {
+    this.filteredPlayers = this.players.filter(player => {
+      return (
+        (!this.selectedType || player.playerType === this.selectedType) &&
+        (!this.selectedFoot || player.footPreference === this.selectedFoot) &&
+        (!this.selectedPosition || player.position === this.selectedPosition) &&
+        (!this.country || player.country.toLowerCase().includes(this.country.toLowerCase())) &&
+        (!this.searchQuery || player.playerName.toLowerCase().includes(this.searchQuery.toLowerCase()))
+      );
+    });
+  }
+
+  navigateTo(route: string) {
+    this.router.navigate([`/${route}`]);
+  }
 }
